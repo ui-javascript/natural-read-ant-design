@@ -40,6 +40,7 @@
   "module": "es/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
+    "install:tyarn": "tyarn install",
     "api-collection": "antd-tools run api-collection",
     "authors": "git log --format='%aN <%aE>' | sort -u | grep -v 'users.noreply.github.com' | grep -v 'gitter.im' | grep -v '.local>' | grep -v 'alibaba-inc.com' | grep -v 'alipay.com' | grep -v 'taobao.com' > AUTHORS.txt",
     "bundlesize": "bundlesize",
@@ -47,7 +48,6 @@
     "compile": "antd-tools run compile",
     "predeploy": "antd-tools run clean && npm run site && cp netlify.toml CNAME _site && cp .circleci/config.yml _site && npm run site:test",
     "deploy": "bisheng gh-pages --push-only",
-    "deploy:china-mirror": "git checkout gh-pages && git pull origin gh-pages && git push git@gitee.com:ant-design/ant-design.git gh-pages",
     "dist": "antd-tools run dist",
     "lint": "npm run lint:tsc && npm run lint:script && npm run lint:demo && npm run lint:style && npm run lint:deps",
     "lint-fix": "npm run lint-fix:script && npm run lint-fix:demo && npm run lint-fix:style",
@@ -65,7 +65,6 @@
     "pretty-quick": "pretty-quick",
     "pub": "antd-tools run pub",
     "prepublish": "antd-tools run guard",
-    "site": "cross-env NODE_ICU_DATA=node_modules/full-icu bisheng build --ssr -c ./site/bisheng.config.js && node ./scripts/generateColorLess.js",
     "sort": "npx sort-package-json",
     "sort-api": "antd-tools run sort-api-table",
     "start": "rimraf _site && mkdir _site && node ./scripts/generateColorLess.js && cross-env NODE_ENV=development bisheng start -c ./site/bisheng.config.js",
@@ -73,8 +72,7 @@
     "test": "jest --config .jest.js --no-cache",
     "test-all": "./scripts/test-all.sh",
     "test-node": "jest --config .jest.node.js --no-cache",
-    "tsc": "tsc",
-    "site:test": "jest --config .jest.site.js --cache=false"
+    "tsc": "tsc"
   },
   "husky": {
     "hooks": {
